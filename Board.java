@@ -1,4 +1,5 @@
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -13,10 +14,14 @@ public class Board extends JFrame {
     private static final long serialVersionUID = 1L;
     private BorderLayout mBorderLayout;
     private JPanel mMunchkinLayout;
+    private JPanel mLeftPanel;
+    private Player[] mPlayer;
+    private JLabel mTitle;
+    private JButton[] mLeftPanelButton;
 
     Board() {
         super("Munchkin");
-        setSize(600, 800);
+        setSize(800, 950);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         mBorderLayout = new BorderLayout();
@@ -24,6 +29,24 @@ public class Board extends JFrame {
 
         mMunchkinLayout = new BoardGUI();
         add(mMunchkinLayout, BorderLayout.CENTER);
+
+        // Title image
+        ImageIcon title = new ImageIcon(getClass().getResource("munchkin_title.jpg"));
+        Image image = title.getImage();
+        Image newImg = image.getScaledInstance(600, 150, java.awt.Image.SCALE_SMOOTH);
+        title = new ImageIcon(newImg);
+        mTitle = new JLabel(title);
+        add(mTitle, BorderLayout.NORTH);
+
+        // Left Hand Button Panel
+        mLeftPanel = new JPanel();
+        mLeftPanelButton = new JButton[3];
+        mLeftPanelButton[0] = new JButton("Main Menu");
+        mLeftPanelButton[1] = new JButton("Rules");
+        mLeftPanelButton[2] = new JButton("Quit");
+        for (int i = 0; i < mLeftPanelButton.length; i++) {
+            add(mLeftPanelButton[i], BorderLayout.WEST);
+        }
 
         setVisible(true);
     }
@@ -37,7 +60,9 @@ public class Board extends JFrame {
         BoardGUI() {
             setLayout(new FlowLayout(FlowLayout.LEFT));
             setSize(600, 800);
-            setBackground(new Color(3, 252, 148));
+            setBackground(new Color(51, 204, 51));
+
+            // Image
             mMunchkinLogo = new ImageIcon(getClass().getResource("munchkin_logo.png"));
             Image image = mMunchkinLogo.getImage();
             Image newImg = image.getScaledInstance(170, 170, java.awt.Image.SCALE_SMOOTH);
@@ -68,5 +93,10 @@ public class Board extends JFrame {
                 g2d.fillRect(xPoints[i], yPoints[i], width[i], height[i]);
             }
         }
+    }
+
+    // will set position of pieces
+    void setPlayerLevel(int level) {
+
     }
 }
