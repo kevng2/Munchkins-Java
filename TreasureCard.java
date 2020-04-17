@@ -1,4 +1,4 @@
 
-public class TreasureCard extends Card{
+public class TreasureCard extends Card {
 
 }
