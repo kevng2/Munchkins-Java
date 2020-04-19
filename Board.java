@@ -14,6 +14,8 @@ import java.awt.GridLayout;
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.BasicStroke;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -30,6 +32,8 @@ public class Board extends JFrame {
     private JLabel mTitle;
     private JButton[] mLeftPanelButton;
     private ButtonHandler mButtonHandler;
+    private JLabel mTreasureButton;
+    private JLabel mDoorButton;
 
     Board() {
         super("Munchkin");
@@ -66,6 +70,7 @@ public class Board extends JFrame {
         // Listens for Button events
         mButtonHandler = new ButtonHandler();
 
+        // add Buttons to panel and listener class
         for (int i = 0; i < mLeftPanelButton.length; i++) {
             mLeftPanel.add(mLeftPanelButton[i], mLeftPanel);
             mLeftPanelButton[i].addActionListener(mButtonHandler);
@@ -76,21 +81,21 @@ public class Board extends JFrame {
 
     private class BoardGUI extends JPanel {
         private static final long serialVersionUID = 1L;
-        private final int[] mNumbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-        private ImageIcon mMunchkinLogo;
-        private JLabel mLogoHolder;
         private Image[] mRomanNumeral;
 
         BoardGUI() {
-            setLayout(new FlowLayout(FlowLayout.LEFT));
             setSize(600, 800);
             setBackground(new Color(204, 102, 0));
+            setLayout(null);
 
-            // Image
-            mMunchkinLogo = new ImageIcon(getClass().getResource("munchkin_logo.png"));
-            mMunchkinLogo = scaleImage(200, 200, mMunchkinLogo);
-            mLogoHolder = new JLabel(mMunchkinLogo, JLabel.LEFT);
-            add(mLogoHolder);
+            // Treasure Card
+            mTreasureButton = placeImageButton(mTreasureButton, "treasure_card.png", 350, 300, 170, 100);
+            MouseHandler mouseHandler = new MouseHandler();
+            mTreasureButton.addMouseListener(mouseHandler);
+            
+            // Door Card
+            mDoorButton = placeImageButton(mDoorButton, "door_card.png", 20, 480, 170, 100);
+            mDoorButton.addMouseListener(mouseHandler);
         }
 
         @Override
@@ -104,7 +109,6 @@ public class Board extends JFrame {
 
             g2d.setColor(Color.gray);
             g2d.setStroke(new BasicStroke(5f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
-
 
             mRomanNumeral = new Image[10];
             mRomanNumeral[0] = loadImage("roman_1.png"); 
@@ -126,11 +130,13 @@ public class Board extends JFrame {
                 // Logic is different for 10th slot because of treasure picture
                 if(i != 9)
                     g2d.drawImage(mRomanNumeral[i], xPoints[i] + 25, yPoints[i] + 25, null);
+                else {
+                    g2d.drawImage(mRomanNumeral[9], 265, 75, null);
+                }
             }
-            g2d.drawImage(mRomanNumeral[9], 265, 75, null);
 
-            // Treasure card
-            placeImage(g2d, "treasure_card.png", 350, 300, 170, 100);
+            // Top Left Munchkin Logo
+            placeImage(g2d, "munchkin_logo.png", 0, 0, 200, 200);
 
             // Treasure Text
             placeImage(g2d, "treasure_word.png", 360, 400, 150, 30);
@@ -138,11 +144,17 @@ public class Board extends JFrame {
             // Treasure Picture
             placeImage(g2d, "treasure.png", 260, 120, 50, 50);
 
-            // Door Card
-            placeImage(g2d, "door_card.png", 20, 480, 170, 100);
-
             // Door Text
             placeImage(g2d, "door_word.png", 40, 580, 120, 30);
+        }
+
+        public JLabel placeImageButton(JLabel imageButton, String imageName, int x, int y, int width, int height) {
+            ImageIcon imageIcon = new ImageIcon(getClass().getResource(imageName));
+            imageIcon = scaleImage(width, height, imageIcon); 
+            imageButton = new JLabel(imageIcon);
+            add(imageButton);
+            imageButton.setBounds(x, y, width, height);
+            return imageButton;
         }
     }
 
@@ -161,6 +173,30 @@ public class Board extends JFrame {
                 System.exit(0);
             }
         }
+    }
+
+    private class MouseHandler implements MouseListener {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if(e.getSource() == mTreasureButton) {
+                System.out.println("Treasure Card Pressed");
+            }
+            else if(e.getSource() == mDoorButton) {
+                System.out.println("Door Button Pressed");
+            }
+        }
+
+		@Override
+		public void mousePressed(MouseEvent e) {}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {}
+
+		@Override
+		public void mouseExited(MouseEvent e) {}
     }
 
     // will set position of pieces
