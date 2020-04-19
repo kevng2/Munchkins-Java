@@ -3,9 +3,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import sun.java2d.pipe.BufferedBufImgOps;
-
 import javax.swing.JLabel;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -18,8 +15,9 @@ import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.BasicStroke;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -37,6 +35,11 @@ public class Board extends JFrame {
         super("Munchkin");
         setSize(700, 950);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // https://stackoverflow.com/questions/2442599/how-to-set-jframe-to-appear-centered-regardless-of-monitor-resolution/15000866
+        // center window in the middle of the user's screen
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        setLocation(dim.width / 2 - getSize().width / 2, dim.height / 2 - getSize().height / 2);
 
         mBorderLayout = new BorderLayout();
         setLayout(mBorderLayout);
@@ -84,7 +87,7 @@ public class Board extends JFrame {
 
             // Image
             mMunchkinLogo = new ImageIcon(getClass().getResource("munchkin_logo.png"));
-            mMunchkinLogo = scaleImage(170, 170, mMunchkinLogo);
+            mMunchkinLogo = scaleImage(200, 200, mMunchkinLogo);
             mLogoHolder = new JLabel(mMunchkinLogo, JLabel.LEFT);
             add(mLogoHolder);
         }
@@ -96,27 +99,29 @@ public class Board extends JFrame {
 
             // parallel arrays that hold the x, y, width, and height for the rectangles
             int[] xPoints = { 300, 375, 225, 200, 70, 70, 200, 375, 375, 240 };
-            int[] yPoints = { 650, 470, 480, 350, 350, 225, 190, 150, 25, 75 };
-            int[] width = { 150, 75, 100, 100, 100, 100, 100, 100, 100, 100 };
-            int[] height = { 75, 150, 100, 100, 100, 100, 120, 100, 100, 100 };
+            int[] yPoints = { 600, 470, 480, 350, 350, 225, 190, 150, 25, 75 };
 
             g2d.setColor(Color.gray);
             g2d.setStroke(new BasicStroke(5f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
 
 
-            /*
-            Image img = null;
-            try {
-                img = ImageIO.read(new File("roman_numerals.png")); 
-            }
-            catch (IOException e) {}
-*/
+            Image[] img = new Image[10];
+            img[0] = loadImage("roman_1.png"); 
+            img[1] = loadImage("roman_2.png"); 
+            img[2] = loadImage("roman_3.png"); 
+            img[3] = loadImage("roman_4.png"); 
+            img[4] = loadImage("roman_5.png"); 
+            img[5] = loadImage("roman_6.png"); 
+            img[6] = loadImage("roman_7.png"); 
+            img[7] = loadImage("roman_8.png"); 
+            img[8] = loadImage("roman_9.png"); 
+            img[9] = loadImage("roman_10.png"); 
 
             // draw Rectangles
             for(int i = 0; i < 10; i++) {
-//                img.getScaledInstance(width[i], height[i], java.awt.Image.SCALE_SMOOTH);
-                g2d.drawRect(xPoints[i], yPoints[i], width[i], height[i]);
- //               g2d.drawImage(img, xPoints[i], yPoints[i], null);
+                img[i] = img[i].getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
+                g2d.drawRect(xPoints[i], yPoints[i], 100, 100);
+                g2d.drawImage(img[i], xPoints[i] + 25, yPoints[i] + 25, null);
             }
         }
     }
@@ -156,5 +161,18 @@ public class Board extends JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    // https://stackoverflow.com/questions/10489773/getting-images-from-a-jar-file
+    public BufferedImage loadImage(String fileName) {
+        BufferedImage buff = null;
+        try {
+            buff = ImageIO.read(getClass().getResourceAsStream(fileName));
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+        }
+        return buff;
     }
 }
