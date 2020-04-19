@@ -33,7 +33,7 @@ public class Board extends JFrame {
 
     Board() {
         super("Munchkin");
-        setSize(700, 950);
+        setSize(700, 900);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // https://stackoverflow.com/questions/2442599/how-to-set-jframe-to-appear-centered-regardless-of-monitor-resolution/15000866
@@ -79,6 +79,7 @@ public class Board extends JFrame {
         private final int[] mNumbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         private ImageIcon mMunchkinLogo;
         private JLabel mLogoHolder;
+        private Image[] mRomanNumeral;
 
         BoardGUI() {
             setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -105,24 +106,43 @@ public class Board extends JFrame {
             g2d.setStroke(new BasicStroke(5f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
 
 
-            Image[] img = new Image[10];
-            img[0] = loadImage("roman_1.png"); 
-            img[1] = loadImage("roman_2.png"); 
-            img[2] = loadImage("roman_3.png"); 
-            img[3] = loadImage("roman_4.png"); 
-            img[4] = loadImage("roman_5.png"); 
-            img[5] = loadImage("roman_6.png"); 
-            img[6] = loadImage("roman_7.png"); 
-            img[7] = loadImage("roman_8.png"); 
-            img[8] = loadImage("roman_9.png"); 
-            img[9] = loadImage("roman_10.png"); 
+            mRomanNumeral = new Image[10];
+            mRomanNumeral[0] = loadImage("roman_1.png"); 
+            mRomanNumeral[1] = loadImage("roman_2.png"); 
+            mRomanNumeral[2] = loadImage("roman_3.png"); 
+            mRomanNumeral[3] = loadImage("roman_4.png"); 
+            mRomanNumeral[4] = loadImage("roman_5.png"); 
+            mRomanNumeral[5] = loadImage("roman_6.png"); 
+            mRomanNumeral[6] = loadImage("roman_7.png"); 
+            mRomanNumeral[7] = loadImage("roman_8.png"); 
+            mRomanNumeral[8] = loadImage("roman_9.png"); 
+            mRomanNumeral[9] = loadImage("roman_10.png"); 
 
             // draw Rectangles
             for(int i = 0; i < 10; i++) {
-                img[i] = img[i].getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
+                mRomanNumeral[i] = mRomanNumeral[i].getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
                 g2d.drawRect(xPoints[i], yPoints[i], 100, 100);
-                g2d.drawImage(img[i], xPoints[i] + 25, yPoints[i] + 25, null);
+
+                // Logic is different for 10th slot because of treasure picture
+                if(i != 9)
+                    g2d.drawImage(mRomanNumeral[i], xPoints[i] + 25, yPoints[i] + 25, null);
             }
+            g2d.drawImage(mRomanNumeral[9], 265, 75, null);
+
+            // Treasure card
+            placeImage(g2d, "treasure_card.png", 350, 300, 170, 100);
+
+            // Treasure Text
+            placeImage(g2d, "treasure_word.png", 360, 400, 150, 30);
+
+            // Treasure Picture
+            placeImage(g2d, "treasure.png", 260, 120, 50, 50);
+
+            // Door Card
+            placeImage(g2d, "door_card.png", 20, 480, 170, 100);
+
+            // Door Text
+            placeImage(g2d, "door_word.png", 40, 580, 120, 30);
         }
     }
 
@@ -169,10 +189,15 @@ public class Board extends JFrame {
         try {
             buff = ImageIO.read(getClass().getResourceAsStream(fileName));
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             return null;
         }
         return buff;
+    }
+
+    public void placeImage(Graphics2D g2d, String imageName, int x, int y, int width, int height) {
+        Image image = loadImage(imageName); 
+        image = image.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH); 
+        g2d.drawImage(image, x, y, null);
     }
 }
