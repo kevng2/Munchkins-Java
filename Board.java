@@ -25,6 +25,11 @@ import java.net.URL;
 
 public class Board extends JFrame {
     private static final long serialVersionUID = 1L;
+
+    // parallel arrays that hold the x, y, width, and height for the rectangles
+    public static final int[] xPoints = { 300, 375, 225, 200, 70, 70, 200, 375, 375, 240 };
+    public static final int[] yPoints = { 600, 470, 480, 350, 350, 225, 190, 150, 25, 75 };
+
     private BorderLayout mBorderLayout;
     private JPanel mMunchkinLayout;
     private JPanel mLeftPanel;
@@ -34,6 +39,7 @@ public class Board extends JFrame {
     private ButtonHandler mButtonHandler;
     private JLabel mTreasureButton;
     private JLabel mDoorButton;
+    private Graphics2D g2d;
 
     Board() {
         super("Munchkin");
@@ -101,11 +107,7 @@ public class Board extends JFrame {
         @Override
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            Graphics2D g2d = (Graphics2D) g;
-
-            // parallel arrays that hold the x, y, width, and height for the rectangles
-            int[] xPoints = { 300, 375, 225, 200, 70, 70, 200, 375, 375, 240 };
-            int[] yPoints = { 600, 470, 480, 350, 350, 225, 190, 150, 25, 75 };
+            g2d = (Graphics2D) g;
 
             g2d.setColor(Color.gray);
             g2d.setStroke(new BasicStroke(5f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
@@ -141,7 +143,7 @@ public class Board extends JFrame {
             // Treasure Text
             placeImage(g2d, "treasure_word.png", 360, 400, 150, 30);
 
-            // Treasure Picture
+            // Treasure Picture on 10th square
             placeImage(g2d, "treasure.png", 260, 120, 50, 50);
 
             // Door Text
@@ -200,8 +202,9 @@ public class Board extends JFrame {
     }
 
     // will set position of pieces
-    void setPlayerLevel(int level) {
-
+    void setPlayerPosition(Player player) {
+        player.updatePosition();
+        placeImage(g2d, player.getImageName(), player.getXPosition(), player.getYPosition(), 30, 30);
     }
 
     ImageIcon scaleImage(int width, int height, ImageIcon imageIcon) {
