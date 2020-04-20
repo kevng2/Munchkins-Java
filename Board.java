@@ -33,6 +33,7 @@ public class Board extends JFrame {
     private BorderLayout mBorderLayout;
     private JPanel mMunchkinLayout;
     private JPanel mLeftPanel;
+    private JPanel mRightPanel;
     private Player[] mPlayer;
     private JLabel mTitle;
     private JButton[] mLeftPanelButton;
@@ -43,7 +44,7 @@ public class Board extends JFrame {
 
     Board() {
         super("Munchkin");
-        setSize(700, 900);
+        setSize(800, 900);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // https://stackoverflow.com/questions/2442599/how-to-set-jframe-to-appear-centered-regardless-of-monitor-resolution/15000866
@@ -59,7 +60,7 @@ public class Board extends JFrame {
 
         // Title image
         ImageIcon title = new ImageIcon(getClass().getResource("munchkin_title.jpg"));
-        title = scaleImage(700, 150, title);
+        title = scaleImage(800, 150, title);
         mTitle = new JLabel(title);
         add(mTitle, BorderLayout.NORTH);
 

@@ -40,8 +40,8 @@ class Player1 extends Player {
 
     @Override
     public void updatePosition() {
-        xPosition = Board.xPoints[mCurrentLevel] + 10;
-        yPosition = Board.yPoints[mCurrentLevel] + 10;
+        xPosition = Board.xPoints[mCurrentLevel - 1] + 10;
+        yPosition = Board.yPoints[mCurrentLevel - 1] + 10;
     }
 
 	@Override
@@ -81,8 +81,8 @@ class Player2 extends Player {
 
 	@Override
 	public void updatePosition() {
-        xPosition = Board.xPoints[mCurrentLevel] + 60;
-        yPosition = Board.yPoints[mCurrentLevel] + 10; 
+        xPosition = Board.xPoints[mCurrentLevel - 1] + 60;
+        yPosition = Board.yPoints[mCurrentLevel - 1] + 10; 
 	}
 
 	@Override
@@ -122,8 +122,8 @@ class Player3 extends Player {
 
 	@Override
 	public void updatePosition() {
-        xPosition = Board.xPoints[mCurrentLevel] + 60; 
-        yPosition = Board.yPoints[mCurrentLevel] + 60;
+        xPosition = Board.xPoints[mCurrentLevel - 1] + 60; 
+        yPosition = Board.yPoints[mCurrentLevel - 1] + 60;
 	}
 
 	@Override
