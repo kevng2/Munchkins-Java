@@ -17,7 +17,9 @@ public class Deck {
             while ((line = br.readLine()) != null) 
             {  
                 String[] attrb = line.split(splitBy);    // use comma as separator  
-                System.out.println(attrb[0]);  
+                if (attrb[0].compareTo("monster") == 0){
+                    doorStack.push(new MonsterCard(attrb[0],Integer.parseInt(attrb[1]),Integer.parseInt(attrb[2]),Integer.parseInt(attrb[3]),Integer.parseInt(attrb[4]),Integer.parseInt(attrb[5]),Integer.parseInt(attrb[6]),Integer.parseInt(attrb[7])));
+                }
             }  
         }   
         catch (IOException e)   
@@ -27,6 +29,9 @@ public class Deck {
     }
     public static void main(String args[]){
         Deck deqe = new Deck();
-
+        System.out.println(deqe.size());
+    }
+    public int size(){
+        return doorStack.size()+treasureStack.size();
     }
 }
