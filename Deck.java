@@ -18,7 +18,7 @@ public class Deck {
             {  
                 String[] attrb = line.split(splitBy);    // use comma as separator  
                 if (attrb[0].compareTo("monster") == 0){
-                    doorStack.push(new MonsterCard(attrb[0],Integer.parseInt(attrb[1]),Integer.parseInt(attrb[2]),Integer.parseInt(attrb[3]),Integer.parseInt(attrb[4]),Integer.parseInt(attrb[5]),Integer.parseInt(attrb[6]),Integer.parseInt(attrb[7])));
+                    doorStack.push(new MonsterCard(attrb[1],Integer.parseInt(attrb[2]),Integer.parseInt(attrb[3]),Integer.parseInt(attrb[4]),Integer.parseInt(attrb[5]),Integer.parseInt(attrb[6]),Integer.parseInt(attrb[7]),Integer.parseInt(attrb[8])));
                 }
             }  
         }   
