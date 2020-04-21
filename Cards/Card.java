@@ -6,8 +6,11 @@ public class Card {
         name = name1;
         type = t;
     }
-    public char type(){
+    public char getType(){
         return type;
+    }
+    public String getName(){
+        return name;
     }
 }
 
