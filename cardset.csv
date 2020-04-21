@@ -1,0 +1,97 @@
+monster,Airport Security,1,1,-1,1,0,0,0
+monster,Hawaiin Shirt Guy,1,1,-2,1,0,0,0
+monster,Zombie Chihuahua,1,1,0,1,0,-1,0
+monster,Janitor,2,1,-1,1,-1,0,0
+monster,Mr. Normal,2,1,-1,1,0,0,0
+monster,Protestor,2,1,0,1,-1,0,0
+monster,Slacker,2,1,-2,1,0,0,0
+monster,Wino,2,1,0,1,0,-1,0
+monster,Girl Sprout,4,2,0,1,-1,0,0
+monster,Nurse,4,2,-1,1,0,0,0
+monster,Soccer Mom,4,2,-1,1,-1,0,0
+monster,Mailman,6,2,-1,1,0,0,0
+monster,Office Zombie,6,2,0,1,-1,0,0
+monster,Pizza Guy,6,2,0,1,-1,0,0
+monster,Dead Head,8,2,-2,1,0,0,0
+monster,Mascot,8,2,0,1,0,0,0
+monster,Ninja,8,2,-1,1,-1,0,0
+monster,Tax Man,8,2,-1,1,-1,0,0
+monster,Fireman,10,3,0,1,-2,0,0
+monster,Golfer,10,3,-1,1,-1,0,0
+monster,Zombie Bureaucrat,10,3,-1,1,0,0,0
+monster,Baby Sitter,1,1,0,1,-1,0,0
+monster,Cute Little Kid,1,1,0,1,-1,0,0
+monster,Used Car Dealer,4,2,-2,1,0,0,0
+monster,"3,782 Dorks",6,2,-1,1,0,0,0
+monster,Butcher,12,3,0,1,0,0,1
+monster,Cannibal,12,3,0,1,0,0,1
+monster,Zombieologist,12,3,0,1,0,0,1
+monster,Barista,14,4,0,1,-1,0,0
+monster,Cafeteria Lady,14,4,0,1,-1,0,0
+monster,Mortician,14,4,0,1,0,0,1
+monster,Game Show Host,16,4,0,2,4,0,0
+monster,Zombie Shark,16,4,0,2,0,0,1
+monster,County Sheriff,18,5,0,2,0,0,1
+monster,Cycle Gang,18,4,0,2,0,0,1
+monster,Action Hero,20,5,0,2,0,0,1
+treas,Body check,2,,,,,,
+treas,Disarm,4,,,,,,
+curse,Fooled By Store Dummy,Lose 1 level,,,,,,
+curse,Wandering Monster,Add Monster,,,,,,
+treas,Smart,3,,,,,,
+curse,Ants,Lose all cards,,,,,,
+curse,Bass  Ackwards,Lose Armor,,,,,,
+curse,CAAAAAAAANES!,Discard Item or lose a level,,,,,,
+treas,Happy Face,3,,,,,,
+treas,Bottle of acid,5,300,,,,,
+treas,Zombie,5,300,,,,,
+treas,Grabby Guts,1,400,,,,,
+treas,Wishing Ring,CurseRemove,500,,,,,
+treas,Wishing Ring,CurseRemove,500,,,,,
+treas,Antique Vinyl,5,700,,,,,
+treas,Leftovers,2,0,,,,,
+treas,Tips to survive the zombie apocolypse,5,600,,,,,
+treas,Gaping Mouth,2,200,,,,,
+treas,Roller Skate,3,,,,,,
+treas,ghoulbladder,2,100,,,,,
+treas,Hand Grenade,2,100,,,,,
+treas,Angry Cat,2,200,,,,,
+treas,BRICK,2,200,,,,,
+treas,Frowny Face,3,200,,,,,
+acc,Thumbtacks,1,700,foot,,,,
+acc,Soda Cans,1,100,foot,,,,
+acc,Bowling Ball,2,200,hand,,,,
+acc,Bowling Trophy,2,200,head,,,,
+acc,Shinign Porcelain Armor,2,200,armor,,,,
+acc,Arm,1,300,hand,,,,
+acc,Forked tongue,2,300,effect,,,,
+acc,Saucepan,2,600,head,,,,
+acc,Chain Link Fence,3,200,armor,,,,
+acc,Flypaper Necktie,3,200,effect,,,,
+acc,Car door,3,300,armor,,,,
+acc,Leg,3,400,hand,,,,
+acc,Funny bone,5,500,hand,,,,
+acc,Mailbox,4,300,head,,,,
+acc,Birdhouse,4,400,head,,,,
+acc,Paddleball,4,400,hand,,,,
+acc,Fire hydrant,4,500,handhand,,,,
+acc,Another zombie,4,600,handhand,,,,
+acc,Pet Monkey,4,600,hand,,,,
+acc,An arm and a leg,5,500,handhand,,,,
+acc,Flower pots,1,100,foot,,,,
+acc,Pork Chop,1,200,hand,,,,
+acc,Umbrella,2,300,head,,,,
+acc,Stop Sign,3,400,hand,,,,
+acc,Xmas Lights,4,600,armor,,,,
+acc,Decaying Flab,4,0,armor,,,,
+lvlup,Yay Decay,1,,,,,,
+lvlup,Visit the Museum,1,,,,,,
+lvlup,BRAAAAAAIIIINS!,1,,,,,,
+lvlup,Grue some!,1,,,,,,
+lvlup,Healthy Snack,1,,,,,,
+lvlup,Hot Meal,1,,,,,,
+lvlup,Swallow the leader,1,,,,,,
+lvlup,Proper Nutrition,1,,,,,,
+lvlup,Meals on Wheels,2,,,,,,
+lvlup,Make Humerus Comments,1,,,,,,
+lvlup,Ladyfingers,1,,,,,,
