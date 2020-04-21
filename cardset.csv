@@ -22,7 +22,7 @@ monster,Zombie Bureaucrat,10,3,-1,1,0,0,0
 monster,Baby Sitter,1,1,0,1,-1,0,0
 monster,Cute Little Kid,1,1,0,1,-1,0,0
 monster,Used Car Dealer,4,2,-2,1,0,0,0
-monster,"3,782 Dorks",6,2,-1,1,0,0,0
+monster,"3782 Dorks",6,2,-1,1,0,0,0
 monster,Butcher,12,3,0,1,0,0,1
 monster,Cannibal,12,3,0,1,0,0,1
 monster,Zombieologist,12,3,0,1,0,0,1
@@ -34,25 +34,28 @@ monster,Zombie Shark,16,4,0,2,0,0,1
 monster,County Sheriff,18,5,0,2,0,0,1
 monster,Cycle Gang,18,4,0,2,0,0,1
 monster,Action Hero,20,5,0,2,0,0,1
-treas,Body check,2,,,,,,
-treas,Disarm,4,,,,,,
-curse,Fooled By Store Dummy,Lose 1 level,,,,,,
-curse,Wandering Monster,Add Monster,,,,,,
-treas,Smart,3,,,,,,
-curse,Ants,Lose all cards,,,,,,
-curse,Bass  Ackwards,Lose Armor,,,,,,
-curse,CAAAAAAAANES!,Discard Item or lose a level,,,,,,
-treas,Happy Face,3,,,,,,
+treas,Body check,2,0,,,,,
+treas,Disarm,4,0,,,,,
+curse,Fooled By Store Dummy,-1,,,,,,
+curse,Fooled By Store Dummy,-1,,,,,,
+curse,Wandering Monster,-2,,,,,,
+curse,Wandering Monster,-2,,,,,,
+curse,Wandering Monster,-2,,,,,,
+treas,Smart,3,0,,,,,
+curse,Ants,-99,,,,,,
+curse,Bass  Ackwards,-3,,,,,,
+curse,CAAAAAAAANES!,-1,,,,,,
+treas,Happy Face,3,0,,,,,
 treas,Bottle of acid,5,300,,,,,
 treas,Zombie,5,300,,,,,
 treas,Grabby Guts,1,400,,,,,
-treas,Wishing Ring,CurseRemove,500,,,,,
-treas,Wishing Ring,CurseRemove,500,,,,,
+treas,Wishing Ring,-100,500,,,,,
+treas,Wishing Ring,-100,500,,,,,
 treas,Antique Vinyl,5,700,,,,,
 treas,Leftovers,2,0,,,,,
 treas,Tips to survive the zombie apocolypse,5,600,,,,,
 treas,Gaping Mouth,2,200,,,,,
-treas,Roller Skate,3,,,,,,
+treas,Roller Skate,3,0,,,,,
 treas,ghoulbladder,2,100,,,,,
 treas,Hand Grenade,2,100,,,,,
 treas,Angry Cat,2,200,,,,,

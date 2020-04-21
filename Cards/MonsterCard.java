@@ -7,8 +7,8 @@ public class MonsterCard extends Card{
     private int leveldown;
     private int itemloss;
     private int death;
-    public MonsterCard(String name1, int levels, int treasure, int discardAmt, int addlevel, int loselevel, int loseitem, int isdeath){
-        super(name1);
+    public MonsterCard(String name1, char type1, int levels, int treasure, int discardAmt, int addlevel, int loselevel, int loseitem, int isdeath){
+        super(name1,type1);
         level = levels;
         treasureAmt = treasure;
         discard = discardAmt;
