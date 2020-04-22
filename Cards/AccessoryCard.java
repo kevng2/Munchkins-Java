@@ -14,4 +14,28 @@ public class AccessoryCard extends Card{
     public String getPart(){
         return bodypart;
     }
+    public int getCurse(){
+        return -100;
+    }
+    public int getLevel(){
+        return -100;
+    }
+    public  int getTreasure(){
+        return -100;
+    }
+    public  int getDiscard(){
+        return -100;
+    }
+    public  int getLevelGain(){
+        return -100;
+    }
+    public  int getLevelLoss(){
+        return -100;
+    }
+    public  int getItemLoss(){
+        return -100;
+    }
+    public  int getDeath(){
+        return -100;
+    }
 }

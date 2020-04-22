@@ -10,7 +10,25 @@ public class TreasureCard extends Card{
     public int getBonus(){
         return bonus;
     }
-    public int getValue(){
+    public int getLevel(){
+        return -100;
+    }
+    public  int getTreasure(){
         return value;
+    }
+    public  int getDiscard(){
+        return -100;
+    }
+    public  int getLevelGain(){
+        return -100;
+    }
+    public  int getLevelLoss(){
+        return -100;
+    }
+    public  int getItemLoss(){
+        return -100;
+    }
+    public  int getDeath(){
+        return -100;
     }
 }

@@ -4,12 +4,14 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import Cards.*;
 import java.util.*; 
+import javafx.util.Pair;
 public abstract class Player {
     protected int mCurrentLevel; 
     protected int xPosition;
     protected int yPosition;
     protected Image mPiece;
-    protected String mImageName; 
+	protected String mImageName;
+	protected HashMap<String,Integer> items = new HashMap<String,Integer>();  
 	protected Vector<Card> hand = new Vector<Card>();
     public BufferedImage loadImage(String fileName) {
         BufferedImage buff = null;
@@ -27,7 +29,23 @@ public abstract class Player {
     public abstract int getXPosition();
     public abstract int getYPosition();
     public abstract void setCurrentLevel(int level);
-    public abstract String getImageName();
+	public abstract String getImageName();
+	public abstract int getCurse();
+	public int getCurrentLevel() {
+		// TODO Auto-generated method stub
+		return mCurrentLevel;
+	}
+	public int getPowerLevel(){
+		int modifiers = 0;
+		for(int x: items.values()){
+			modifiers+=x;
+		}
+		return modifiers+mCurrentLevel;
+	}
+	public void addItem(String x, int y){
+		items.put(x,y);
+	}
+
 }
 
 class Player1 extends Player {
@@ -42,7 +60,7 @@ class Player1 extends Player {
 			hand.add(d.popTreas());
 		}
     }
-
+	
     @Override
     public void updatePosition() {
         xPosition = Board.xPoints[mCurrentLevel - 1] + 10;

@@ -38,5 +38,10 @@ public class MonsterCard extends Card{
     public int getDeath(){
         return death;
     }
-    
+    public int getBonus(){
+        return -100;
+    }
+    public abstract int getCurse(){
+        return -100;
+    }
 }
