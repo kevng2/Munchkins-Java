@@ -3,6 +3,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -22,6 +23,8 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Vector;
+import Cards.*;
 
 public class Board extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -41,6 +44,7 @@ public class Board extends JFrame {
     private JLabel mTreasureButton;
     private JLabel mDoorButton;
     private Graphics2D g2d;
+    private JTextField mCardText;
 
     Board() {
         super("Munchkin");
@@ -82,6 +86,10 @@ public class Board extends JFrame {
             mLeftPanel.add(mLeftPanelButton[i], mLeftPanel);
             mLeftPanelButton[i].addActionListener(mButtonHandler);
         }
+
+        mRightPanel = new JPanel();
+        mRightPanel.setLayout(new GridLayout(4,5));
+        add(mRightPanel, BorderLayout.EAST);
 
         setVisible(true);
     }
@@ -239,5 +247,11 @@ public class Board extends JFrame {
         Image image = loadImage(imageName); 
         image = image.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH); 
         g2d.drawImage(image, x, y, null);
+    }
+
+    public void addCard(Player player) {
+        Vector<Card> playerHand = player.getHand();
+        // Update the layout after adding the button
+        revalidate();
     }
 }

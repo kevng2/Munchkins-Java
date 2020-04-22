@@ -31,6 +31,6 @@ public class LevelUpCard extends Card {
         return -100;
     }
     public int getCurse(){
-        return -100
+        return -100;
     }
 }

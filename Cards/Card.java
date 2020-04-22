@@ -2,6 +2,7 @@ package Cards;
 public abstract class Card {
     protected String name;
     protected char type;
+
     public Card(String name1,char t){
         name = name1;
         type = t;
@@ -12,6 +13,7 @@ public abstract class Card {
     public String getName(){
         return name;
     }
+
     public abstract int getLevel();
     public abstract int getTreasure();
     public abstract int getDiscard();
@@ -22,6 +24,3 @@ public abstract class Card {
     public abstract int getBonus();
     public abstract int getCurse();
 }
-
-
-
