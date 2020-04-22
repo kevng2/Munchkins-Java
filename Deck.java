@@ -48,11 +48,13 @@ public class Deck {
         e.printStackTrace();  
         }   
     }
-    public static void main(String args[]){
-        Deck deqe = new Deck();
-        System.out.println(deqe.size());
-    }
     public int size(){
         return doorStack.size()+treasureStack.size();
+    }
+    public Card popDoor(){
+        return doorStack.pop();
+    }
+    public Card popTreas(){
+        return treasureStack.pop();
     }
 }

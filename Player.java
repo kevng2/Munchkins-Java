@@ -2,14 +2,15 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-
+import Cards.*;
+import java.util.*; 
 public abstract class Player {
     protected int mCurrentLevel; 
     protected int xPosition;
     protected int yPosition;
     protected Image mPiece;
     protected String mImageName; 
-
+	protected Vector<Card> hand = new Vector<Card>();
     public BufferedImage loadImage(String fileName) {
         BufferedImage buff = null;
         try {
@@ -30,12 +31,16 @@ public abstract class Player {
 }
 
 class Player1 extends Player {
-    Player1() {
+    Player1(Deck d) {
         mCurrentLevel = 1;
         mPiece = loadImage("dragon.png");
         mImageName = "dragon.png";
         xPosition = 310;
-        yPosition = 610;
+		yPosition = 610;
+		for(int i=0;i<4;i++){
+			hand.add(d.popDoor());
+			hand.add(d.popTreas());
+		}
     }
 
     @Override
@@ -71,12 +76,16 @@ class Player1 extends Player {
 }
 
 class Player2 extends Player {
-    Player2() {
+    Player2(Deck d) {
         mCurrentLevel = 1;
         mPiece = loadImage("shrek.png");
         mImageName = "shrek.png";
         xPosition = 360;
-        yPosition = 610;
+		yPosition = 610;
+		for(int i=0;i<4;i++){
+			hand.add(d.popDoor());
+			hand.add(d.popTreas());
+		}
     }
 
 	@Override
@@ -112,12 +121,16 @@ class Player2 extends Player {
 }
 
 class Player3 extends Player {
-    Player3() {
+    Player3(Deck d) {
         mCurrentLevel = 1;
         mPiece = loadImage("sword.png");
         mImageName = "sword.png";
         xPosition = 360;
-        yPosition = 660;
+		yPosition = 660;
+		for(int i=0;i<4;i++){
+			hand.add(d.popDoor());
+			hand.add(d.popTreas());
+		}
     }
 
 	@Override
