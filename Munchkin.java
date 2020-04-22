@@ -102,9 +102,7 @@ public class Munchkin {
                 if(door.getDiscard()!=0){
                     p.discardCard(door.getDiscard());
                 }
-                else{
-                    
-                }
+                //add mor econditions
             }
                 
             
