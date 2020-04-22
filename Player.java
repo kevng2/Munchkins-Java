@@ -40,6 +40,7 @@ public abstract class Player {
             hand.remove(0);
         }
     }
+
 	public int getCurrentLevel() {
 		return mCurrentLevel;
     }
@@ -78,7 +79,15 @@ public abstract class Player {
 
 	public void setCurrentLevel(int level) {
         mCurrentLevel = level;
-	}
+    }
+
+    public void drawTreasure(Deck d) {
+        hand.add(d.popTreas());
+    }
+
+    public void drawDoor(Deck d) {
+        hand.add(d.popDoor());
+    }
 }
 
 class Player1 extends Player {

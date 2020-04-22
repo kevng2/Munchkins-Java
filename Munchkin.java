@@ -98,8 +98,6 @@ public class Munchkin {
                 }
                 //add mor econditions
             }
-                
-            
         }
     }
 }

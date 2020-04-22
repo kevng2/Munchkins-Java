@@ -41,6 +41,7 @@ public class Board extends JFrame {
     private JLabel mTreasureButton;
     private JLabel mDoorButton;
     private Graphics2D g2d;
+    private int currentPlayer = 1;
 
     Board() {
         super("Munchkin");
@@ -192,7 +193,18 @@ public class Board extends JFrame {
         @Override
         public void mouseClicked(MouseEvent e) {
             if(e.getSource() == mTreasureButton) {
-                System.out.println("Treasure Card Pressed");
+                if(currentPlayer == 1) {
+                    Munchkin.player1.drawTreasure(Munchkin.newDeck);
+                    updateHand(Munchkin.player1);
+                }
+                else if(currentPlayer == 2) {
+                    Munchkin.player2.drawTreasure(Munchkin.newDeck);
+                    updateHand(Munchkin.player2);
+                }
+                else {
+                    Munchkin.player3.drawTreasure(Munchkin.newDeck);
+                    updateHand(Munchkin.player3);
+                }
             }
             else if(e.getSource() == mDoorButton) {
                 System.out.println("Door Button Pressed");
@@ -253,7 +265,7 @@ public class Board extends JFrame {
 
     public void updateHand(Player player) {
         Vector<Card> playerHand = player.getHand();
-        
+        mRightPanel.removeAll();        
         for (Card card : playerHand) {
             String text = card.getName(); 
             if(card.getType() == 'T') {
