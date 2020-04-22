@@ -17,6 +17,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.BasicStroke;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -37,11 +38,16 @@ public class Board extends JFrame {
     private JPanel mRightPanel;
     private JLabel mTitle;
     private JButton[] mLeftPanelButton;
+    private Vector<JButton> mPlayer1Cards = new Vector<JButton>();
+    private Vector<JButton> mPlayer2Cards = new Vector<JButton>();
+    private Vector<JButton> mPlayer3Cards = new Vector<JButton>();
     private ButtonHandler mButtonHandler;
     private JLabel mTreasureButton;
     private JLabel mDoorButton;
     private Graphics2D g2d;
     private int currentPlayer = 1;
+    private JLabel mPlayerTurn;
+    
 
     Board() {
         super("Munchkin");
@@ -85,7 +91,7 @@ public class Board extends JFrame {
         }
 
         mRightPanel = new JPanel();
-        mRightPanel.setLayout(new GridLayout(4,5));
+        mRightPanel.setLayout(new GridLayout(4, 5));
         mRightPanel.setSize(400, 950);
         add(mRightPanel, BorderLayout.EAST);
 
@@ -109,6 +115,11 @@ public class Board extends JFrame {
             // Door Card
             mDoorButton = placeImageButton(mDoorButton, "door_card.png", 20, 480, 170, 100);
             mDoorButton.addMouseListener(mouseHandler);
+
+            mPlayerTurn = new JLabel("Player 1's Turn");
+            mPlayerTurn.setBounds(500, 0, 300, 50);
+            mPlayerTurn.setFont(new Font("Serif", Font.BOLD, 24));
+            add(mPlayerTurn);
         }
 
         @Override
@@ -304,10 +315,28 @@ public class Board extends JFrame {
                 text = "<html> Accessory Card <br/>" + card.getName() + "<br/>" + "Bonus: " + card.getBonus() +
                 "<br/>" + "Bodypart: " + card.getPart();
             }
-            mRightPanel.add(new JButton(text));
+
+            if(currentPlayer == 1) {
+                mPlayer1Cards.add(new JButton(text));
+                addButtons(mPlayer1Cards);
+            }
+            else if(currentPlayer == 2) {
+                mPlayer2Cards.add(new JButton(text));
+                addButtons(mPlayer2Cards);
+            }
+            else {
+                mPlayer3Cards.add(new JButton(text));
+                addButtons(mPlayer3Cards);
+            }
         }
 
         // Update the layout after adding the button
         revalidate();
+    }
+
+    public void addButtons(Vector<JButton> button) {
+        for(JButton x : button) {
+            mRightPanel.add(x);
+        }
     }
 }

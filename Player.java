@@ -17,7 +17,7 @@ public abstract class Player {
     
     Player(Deck d) {
         mCurrentLevel = 1;
-        for(int i=0;i<4;i++) {
+        for(int i=0;i<2;i++) {
 			hand.add(d.popDoor());
 			hand.add(d.popTreas());
 		}

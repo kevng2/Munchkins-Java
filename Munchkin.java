@@ -21,6 +21,7 @@ public class Munchkin {
             }
             //add player 1 logic here
             //event handle if player wants to add item and use player.addItem function
+
             if(player2.getCurrentLevel() == 10){
                 winner = 1;
                 break;
