@@ -12,13 +12,11 @@ public class Munchkin {
         game.setPlayerPosition(player1);
         game.setPlayerPosition(player2);
         game.setPlayerPosition(player3);
-
         
         game.updateHand(player1);
 
         boolean wincondition = false;
         int winner = 0;
-
 
         while(wincondition){
             if(player1.getCurrentLevel() == 10){

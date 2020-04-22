@@ -3,12 +3,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.GridLayout;
@@ -37,18 +35,16 @@ public class Board extends JFrame {
     private JPanel mMunchkinLayout;
     private JPanel mLeftPanel;
     private JPanel mRightPanel;
-    private Player[] mPlayer;
     private JLabel mTitle;
     private JButton[] mLeftPanelButton;
     private ButtonHandler mButtonHandler;
     private JLabel mTreasureButton;
     private JLabel mDoorButton;
     private Graphics2D g2d;
-    private JTextField mCardText;
 
     Board() {
         super("Munchkin");
-        setSize(800, 900);
+        setSize(1300, 900);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // https://stackoverflow.com/questions/2442599/how-to-set-jframe-to-appear-centered-regardless-of-monitor-resolution/15000866
@@ -89,6 +85,7 @@ public class Board extends JFrame {
 
         mRightPanel = new JPanel();
         mRightPanel.setLayout(new GridLayout(4,5));
+        mRightPanel.setSize(400, 950);
         add(mRightPanel, BorderLayout.EAST);
 
         setVisible(true);
@@ -251,6 +248,48 @@ public class Board extends JFrame {
 
     public void updateHand(Player player) {
         Vector<Card> playerHand = player.getHand();
+        
+        for (Card card : playerHand) {
+            String text = card.getName(); 
+            if(card.getType() == 'T') {
+                text = "<html>Treasure Card<br/>" + "+" + card.getBonus() + " Bonus<br/>" + card.getName() +
+                 "</html>";
+            }
+            else if(card.getType() == 'L') {
+                text = "<html> Level Card <br/>" + card.getName() + "<br/>" + "<br/></html>";
+            }
+            else if(card.getType() == 'M') {
+                text = "<html> Monster Card <br/> Level " + card.getLevel() + "<br/>" + card.getName() + "<br/>" 
+                + "Level Loss: " + card.getLevelLoss() + "<br/>" + "Treasure: " + card.getTreasure()
+                 + "<br/>" + "Item Loss: " + card.getItemLoss() + "<br/>"+ "Level Gain: " + card.getLevelGain()
+                 + "<br/>" + "Discard: " + card.getDiscard() + "<br/>" + "Death: " + card.getDeath();
+            }
+            else if(card.getType() == 'C') {
+                int curse = card.getCurse();
+                String curseType;
+                if(curse == -1) {
+                    curseType = "Lose Level";
+                }
+                else if(curse == -2) {
+                    curseType = "Add Monster";
+                }
+                else if(curse == -3) {
+                    curseType = "Lose armor";
+                }
+                else {
+                    curseType = "Lose all cards";
+                }
+
+                text = "<html>" + "CURSE!" + "<br/>" + card.getName() + "<br/>" +
+                curseType + "</html>";
+            }
+            else if(card.getType() == 'A') {
+                text = "<html> Accessory Card <br/>" + card.getName() + "<br/>" + "Bonus: " + card.getBonus() +
+                "<br/>" + "Bodypart: " + card.getPart();
+            }
+            mRightPanel.add(new JButton(text));
+        }
+
         // Update the layout after adding the button
         revalidate();
     }

@@ -36,4 +36,7 @@ public class CurseCard extends Card {
     public int getBonus(){
         return -100;
     }
+	public String getPart() {
+		return null;
+	}
 }
