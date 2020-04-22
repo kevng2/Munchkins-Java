@@ -90,6 +90,12 @@ public class Munchkin {
                 if(reward.getType() == 'L' ){
                     p.setCurrentLevel(p.getCurrentLevel()+reward.getLevel());
                 }
+                else if(reward.getType() == 'A'){
+                    p.addItem(reward.getName(),reward.getBonus() );
+                }
+                else{
+                    p.addCardHand(reward);
+                }
                 //implement logic to get treasure and add to char
             }
             else if(!wincondition){
