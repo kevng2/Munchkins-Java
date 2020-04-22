@@ -33,8 +33,7 @@ public class LevelUpCard extends Card {
     public int getCurse(){
         return -100;
     }
-	@Override
-	public String getPart() {
-		return null;
-	}
+	public String getPart(){
+        return "";
+    }
 }

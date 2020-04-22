@@ -33,8 +33,11 @@ public abstract class Player {
         }
         return buff;
     }
-
+    public void addCardHand(Card c){
+        hand.add(c);
+    }
     public abstract void updatePosition();
+
     public void discardCard(int amt){
         for(int i=0;i<amt;i++){
             hand.remove(0);
