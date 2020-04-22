@@ -154,6 +154,11 @@ public class Board extends JFrame {
 
             // Door Text
             placeImage(g2d, "door_word.png", 40, 580, 120, 30);
+
+            
+            setPlayerPosition(Munchkin.player1);
+            setPlayerPosition(Munchkin.player2);
+            setPlayerPosition(Munchkin.player3); 
         }
 
         public JLabel placeImageButton(JLabel imageButton, String imageName, int x, int y, int width, int height) {
