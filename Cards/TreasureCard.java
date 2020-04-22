@@ -31,8 +31,10 @@ public class TreasureCard extends Card{
     public  int getDeath(){
         return -100;
     }
-	@Override
 	public int getCurse() {
-		return 0;
+		return -100;
+	}
+	public String getPart() {
+		return null;
 	}
 }

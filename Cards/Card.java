@@ -23,4 +23,5 @@ public abstract class Card {
     public abstract int getDeath();
     public abstract int getBonus();
     public abstract int getCurse();
+    public abstract String getPart();
 }
