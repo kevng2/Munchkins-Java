@@ -35,7 +35,11 @@ public abstract class Player {
     }
 
     public abstract void updatePosition();
-
+    public void discardCard(int amt){
+        for(int i=0;i<amt;i++){
+            hand.remove(0);
+        }
+    }
 	public int getCurrentLevel() {
 		return mCurrentLevel;
     }
