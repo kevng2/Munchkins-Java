@@ -249,7 +249,7 @@ public class Board extends JFrame {
         g2d.drawImage(image, x, y, null);
     }
 
-    public void addCard(Player player) {
+    public void updateHand(Player player) {
         Vector<Card> playerHand = player.getHand();
         // Update the layout after adding the button
         revalidate();

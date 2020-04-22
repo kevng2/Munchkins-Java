@@ -13,7 +13,8 @@ public class Munchkin {
         game.setPlayerPosition(player2);
         game.setPlayerPosition(player3);
 
-        game.updateHandLayout();
+        
+        game.updateHand(player1);
 
         boolean wincondition = false;
         int winner = 0;
