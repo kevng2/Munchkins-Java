@@ -42,7 +42,11 @@ public class Munchkin {
         Card door = d.popDoor();
         if(door.getType() == 'm'){
             if(p.getPowerLevel() < door.getLevel()){
-                
+                //request help
+            }
+            else{
+                Card reward = d.popTreas();
+                //implement logic to get treasure and add to char
             }
         }
     }

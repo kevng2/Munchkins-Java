@@ -30,7 +30,7 @@ public abstract class Player {
     public abstract int getYPosition();
     public abstract void setCurrentLevel(int level);
 	public abstract String getImageName();
-	public abstract int getCurse();
+
 	public int getCurrentLevel() {
 		// TODO Auto-generated method stub
 		return mCurrentLevel;
