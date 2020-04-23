@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Vector;
 import Cards.*;
+import java.util.Random;
 
 public class Board extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -46,7 +47,9 @@ public class Board extends JFrame {
     private JLabel mPlayerTurn;
     private JButton mAttack;
     private JButton mRun;
-    MouseHandler mouseHandler; 
+    private MouseHandler mouseHandler; 
+    private Boolean isRunClicked;
+    private int option = 0;
 
     Board() {
         super("Munchkin");
@@ -216,7 +219,8 @@ public class Board extends JFrame {
                 placeButtons(Munchkin.player[Munchkin.playerTurn]);
             }
             else if(e.getSource() == mDoorButton) {
-                //Munchkin.kickDoor(Munchkin.player[Munchkin.playerTurn],Munchkin.newDeck, Munchkin.playerTurn, Munchkin.player);
+                kickDoor(Munchkin.player[Munchkin.playerTurn],Munchkin.newDeck, Munchkin.playerTurn, Munchkin.player);
+                System.out.println("Door Button Pressed");
             }
             else {
                 Vector<JButton> tempButton = Munchkin.player[Munchkin.playerTurn].getCardButtons(); 
@@ -308,5 +312,107 @@ public class Board extends JFrame {
             x.addMouseListener(mouseHandler);
         }
         revalidate();
+    }
+
+    void kickDoor(Player p, Deck d,int playnum, Player[] play){
+        Card door = d.popDoor();
+        int help1=0,help2=0;
+        boolean wincondition = false;
+        if(door.getType() == 'M'){
+            System.out.println("In monster statement");
+            //update
+            if(p.getPowerLevel() < door.getLevel()){
+
+                mAttack.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        option = 1;
+                    }
+                });
+
+                if(option == 1){
+                    System.out.println("In Running statement");
+                    Random ran = new Random();
+                    int result = ran.nextInt(6);
+                    if(result >= 5){
+                        System.out.println("Successfully ran away");
+                    }
+                    else{
+                        wincondition = false;
+                    }
+                }
+                else{
+                    System.out.println("In else statement of monster");
+                    boolean help=false;
+                    for(int i=0;i<3;i++){
+                        if(i!= playnum){
+                            //request help
+                            if(help){
+                                help1 = play[i].getPowerLevel();
+                            }
+                        }
+                        
+                    }
+
+                    if(p.getPowerLevel()+help1+help2>=door.getLevel()){
+                        wincondition = true;
+                        System.out.println("In win condition");
+                    }
+                }
+            }
+            else{
+                wincondition=true;
+            }
+
+            if(wincondition){
+                System.out.println("in win condition");
+                p.setCurrentLevel(door.getLevelGain());
+                Card reward = d.popTreas();
+                if(reward.getType() == 'L' ){
+                    p.setCurrentLevel(p.getCurrentLevel()+reward.getLevel());
+                    p.updatePosition();
+                }
+                else if(reward.getType() == 'A'){
+                    p.addItem(reward.getName(),reward.getBonus() );
+                }
+                else{
+                    p.addCardHand(reward);
+                }
+                repaint();
+                revalidate();
+                //implement logic to get treasure and add to char
+            }
+
+            else if(!wincondition){
+                System.out.println("in not win condition");
+                if(door.getDiscard()!=0){
+                    p.discardCard(door.getDiscard());
+                }
+                if(door.getLevelLoss()!=0){
+                    p.setCurrentLevel(p.getCurrentLevel()-door.getLevelLoss());
+                    p.updatePosition();
+                }
+                if(door.getItemLoss()!=0){
+                    if(door.getDeath()!=0){
+                        p.stripItem(-1);
+                    }
+                    else{
+                        p.stripItem(door.getItemLoss());
+                    }
+                }
+            }
+        }
+
+        else{
+            System.out.println(door.getName());
+            if(door.getCurse() == -1){
+                p.setCurrentLevel(p.mCurrentLevel-1);
+            }
+            else if(door.getCurse()==-3){
+                p.stripItem(1);
+            }
+            else if(door.getCurse()==-99){
+                p.discardCard(-1);
+            }
+        }
     }
 }
