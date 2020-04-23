@@ -165,6 +165,7 @@ public abstract class Player {
 
     public void drawTreasure(Deck d) {
         hand.add(d.popTreas());
+        updateHand();
     }
 
     public void drawDoor(Deck d) {

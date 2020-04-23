@@ -215,6 +215,15 @@ public class Board extends JFrame {
                         if(cardList.get(i).getType() == 'A') {
                             Munchkin.player[Munchkin.playerTurn].setCurrentPowerLevel(cardList.get(i).getBonus());
                             System.out.println(Munchkin.player[Munchkin.playerTurn].getCurrentPowerLevel());
+
+                            // Remove card from the player list
+                            cardList.remove(i);
+
+                            // Remove the button
+                            tempButton.remove(i); 
+
+                            // Update the button UI
+                            placeButtons(Munchkin.player[Munchkin.playerTurn]);
                         }
                     }
                 }
