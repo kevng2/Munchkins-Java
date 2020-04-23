@@ -28,8 +28,12 @@ public abstract class Player {
 
     public void updateHand() {
         cardButtons.clear();
+
+        // iterate through the hand
         for (Card card : hand) {
             String text = card.getName(); 
+
+            // concatenate the html string together with the content. If statements checks the type of the cards
             if(card.getType() == 'T') {
                 text = "<html>Treasure Card<br/>" + "+" + card.getBonus() + " Bonus<br/>" + card.getName() +
                  "</html>";
@@ -66,6 +70,8 @@ public abstract class Player {
                 text = "<html> Accessory Card <br/>" + card.getName() + "<br/>" + "Bonus: " + card.getBonus() +
                 "<br/>" + "Bodypart: " + card.getPart();
             }
+            
+            // add the button the array to print out later
             cardButtons.add(new JButton(text));
         }
     }

@@ -207,6 +207,15 @@ public class Board extends JFrame {
             else if(e.getSource() == mDoorButton) {
                 System.out.println("Door Button Pressed");
             }
+            else {
+                Vector<JButton> tempButton = Munchkin.player[Munchkin.playerTurn].getCardButtons(); 
+                Vector<Card> tempCard = Munchkin.player[Munchkin.playerTurn].getHand();
+                for(int i = 0; i < tempCard.size(); i++) {
+                    if(e.getSource() == tempButton.get(i)) {
+                        System.out.println(tempCard.get(i).getName());
+                    }
+                }
+            }
         }
 
 		@Override
@@ -271,6 +280,7 @@ public class Board extends JFrame {
         mRightPanel.removeAll();
         for(JButton x : button) {
             mRightPanel.add(x);
+            x.addMouseListener(mouseHandler);
         }
         revalidate();
     }

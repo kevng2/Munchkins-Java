@@ -110,9 +110,6 @@ public class Munchkin {
                 wincondition=true;
             }
 
-
-
-
             if(wincondition){
                 p.setCurrentLevel(door.getLevelGain());
                 Card reward = d.popTreas();
