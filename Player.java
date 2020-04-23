@@ -92,26 +92,32 @@ public abstract class Player {
     }
 
     public void stripItem(int amt){
-        if(amt == -1){
-            items.clear();
-        }
-        else{
-            int i = 0;
-            for(String key: items.keySet()){
-                if(i++==amt-1){
-                    break;
+        if(items.size() != 0){
+            if(amt == -1){
+                items.clear();
+            }
+            else{
+                int i = 0;
+                for(String key: items.keySet()){
+                    if(i++==amt-1){
+                        break;
+                    }
+                    items.remove(key);
+                    
                 }
-                items.remove(key);
-                
             }
         }
+        
     }
     public abstract void updatePosition();
 
     public void discardCard(int amt){
-        for(int i=0;i<amt;i++){
-            hand.remove(0);
+        if(hand.size() >= amt){
+            for(int i=0;i<amt;i++){
+                hand.remove(0);
+            }
         }
+        
     }
 
 	public int getCurrentLevel() {

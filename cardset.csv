@@ -29,7 +29,7 @@ monster,Zombieologist,12,3,0,1,0,0,1
 monster,Barista,14,4,0,1,-1,0,0
 monster,Cafeteria Lady,14,4,0,1,-1,0,0
 monster,Mortician,14,4,0,1,0,0,1
-monster,Game Show Host,16,4,0,2,4,0,0
+monster,Game Show Host,16,4,0,2,-4,0,0
 monster,Zombie Shark,16,4,0,2,0,0,1
 monster,County Sheriff,18,5,0,2,0,0,1
 monster,Cycle Gang,18,4,0,2,0,0,1

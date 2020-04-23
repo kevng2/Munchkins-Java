@@ -17,19 +17,23 @@ public class Munchkin {
         player[2] = new Player3(newDeck);
         Board game = new Board();
 
-        game.placeButtons(player[0]);
+        
 
         boolean wincondition = true;
         int winner = 0;
         int currplayer=0;
-
-        while(wincondition){
-            if(player[currplayer].getCurrentLevel() == 10) {
-                winner = 1;
-                break;
-            }
-            //kickDoor(player[currplayer],newDeck,currplayer,player);
-            //currplayer++;
-        }
+        int i = 0;
+        game.placeButtons(player[0]);
+        // while(wincondition){
+        //     game.placeButtons(player[i]);
+        //     if(player[currplayer].getCurrentLevel() == 10) {
+        //         winner = i;
+        //         break;
+        //     }
+        //     // game.mRightPanel.removeAll();
+        //     i++;
+        //     //kickDoor(player[currplayer],newDeck,currplayer,player);
+        //     //currplayer++;
+        // }
     }
 }

@@ -36,7 +36,7 @@ public class Board extends JFrame {
     private BorderLayout mBorderLayout;
     private JPanel mMunchkinLayout;
     private JPanel mLeftPanel;
-    private JPanel mRightPanel;
+    public JPanel mRightPanel;
     private JLabel mTitle;
     private JButton[] mLeftPanelButton;
     private ButtonHandler mButtonHandler;
@@ -364,11 +364,13 @@ public class Board extends JFrame {
             }
 
             if(wincondition){
-                System.out.println("in win condition");
+                // System.out.println("in win condition");
                 p.setCurrentLevel(door.getLevelGain());
                 Card reward = d.popTreas();
+                p.setCurrentLevel(p.getCurrentLevel()+door.getLevelGain());
+                p.updatePosition();
                 if(reward.getType() == 'L' ){
-                    p.setCurrentLevel(p.getCurrentLevel()+reward.getLevel());
+                    p.setCurrentLevel(p.getCurrentLevel()+door.getLevelGain());
                     p.updatePosition();
                 }
                 else if(reward.getType() == 'A'){
@@ -383,14 +385,16 @@ public class Board extends JFrame {
             }
 
             else if(!wincondition){
-                System.out.println("in not win condition");
+                // System.out.println("in not win condition");
                 if(door.getDiscard()!=0){
                     p.discardCard(door.getDiscard());
                 }
-                if(door.getLevelLoss()!=0){
-                    p.setCurrentLevel(p.getCurrentLevel()-door.getLevelLoss());
+                System.out.println(door.getLevelLoss());
+                if(door.getLevelLoss()!=0 && p.getCurrentLevel()+door.getLevelLoss() > 0){
+                    p.setCurrentLevel(p.getCurrentLevel()+door.getLevelLoss());
                     p.updatePosition();
                 }
+                // System.out.println(p.getCurrentLevel());
                 if(door.getItemLoss()!=0){
                     if(door.getDeath()!=0){
                         p.stripItem(-1);
