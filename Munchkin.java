@@ -28,8 +28,6 @@ public class Munchkin {
             }
             kickDoor(player[currplayer],newDeck,currplayer,player);
 
-
-
             currplayer++;
         }
     }
