@@ -36,6 +36,22 @@ public abstract class Player {
     public void addCardHand(Card c){
         hand.add(c);
     }
+    public void stripItem(int amt){
+        if(amt == -1){
+            items.clear();
+        }
+        else{
+            int i = 0;
+            for(Map.Entry mapElement: items.entrySet()){
+                if(i++==amt-1){
+                    break;
+                }
+                String key = (String)mapElement.getKey();
+                items.remove(key);
+                
+            }
+        }
+    }
     public abstract void updatePosition();
 
     public void discardCard(int amt){

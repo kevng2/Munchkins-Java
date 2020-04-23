@@ -1,5 +1,5 @@
 import Cards.*;
-
+import java.util.Random;
 public class Munchkin {
     public static final Deck newDeck = new Deck();
     public static Player player1 = new Player1(newDeck);
@@ -21,7 +21,6 @@ public class Munchkin {
             }
             //add player 1 logic here
             //event handle if player wants to add item and use player.addItem function
-
             if(player2.getCurrentLevel() == 10){
                 winner = 1;
                 break;
@@ -43,48 +42,69 @@ public class Munchkin {
             if(p.getPowerLevel() < door.getLevel()){
                 //request help
                 //event handle if the player wants to help
-                if(playnum==1){
-                    boolean help = false;
-                    //here ask player 2 for help
-                    if(help){
-                        help1 = OP1.getPowerLevel();
+                //we would change help to be a boolean
+                int option = 0;
+                //change option to see what user wants
+                if(option == 1){
+                    Random ran = new Random();
+                    int result = ran.nextInt(6);
+                    if(result >= 5){
+                        System.out.println("Successfully ran away");
                     }
-                    //here ask player 3 for help
-                    if(help){
-                        help2=OP2.getPowerLevel();
-                    }
-                    
-                }
-                else if(playnum==2){
-                    boolean help = false;
-                    //here
-                    //here ask player 1 for help
-                    if(help){
-                        help1 = OP1.getPowerLevel();
-                    }
-                    //here ask palyer 3 for help
-                    if(help){
-                        help2=OP2.getPowerLevel();
+                    else{
+                        wincondition = false;
                     }
                 }
                 else{
-                    boolean help = false;
-                    //here ask player 1
-                    if(help){
-                        help1 = OP1.getPowerLevel();
+                    if(playnum==1){
+                        boolean help = false;
+                        //here ask player 2 for help
+                        if(help){
+                            help1 = OP1.getPowerLevel();
+                        }
+                        //here ask player 3 for help
+                        if(help){
+                            help2=OP2.getPowerLevel();
+                        }
+                        
                     }
-                    //here ask player 2 for help
-                    if(help){
-                        help2=OP2.getPowerLevel();
+                    else if(playnum==2){
+                        boolean help = false;
+                        //here
+                        //here ask player 1 for help
+                        if(help){
+                            help1 = OP1.getPowerLevel();
+                        }
+                        //here ask palyer 3 for help
+                        if(help){
+                            help2=OP2.getPowerLevel();
+                        }
+                    }
+                    else{
+                        boolean help = false;
+                        //here ask player 1
+                        if(help){
+                            help1 = OP1.getPowerLevel();
+                        }
+                        //here ask player 2 for help
+                        if(help){
+                            help2=OP2.getPowerLevel();
+                        }
+                    }
+                    if(p.getPowerLevel()+help1+help2>=door.getLevel()){
+                        wincondition = true;
                     }
                 }
-                if(p.getPowerLevel()+help1+help2>=door.getLevel()){
-                    wincondition = true;
-                }
+                
+                
             }
             else{
                 wincondition=true;
             }
+
+
+
+
             if(wincondition){
                 p.setCurrentLevel(door.getLevelGain());
                 Card reward = d.popTreas();
@@ -103,8 +123,21 @@ public class Munchkin {
                 if(door.getDiscard()!=0){
                     p.discardCard(door.getDiscard());
                 }
+                if(door.getLevelLoss()!=0){
+                    p.setCurrentLevel(p.getCurrentLevel()-door.getLevelLoss());
+                }
+                if(door.getItemLoss()!=0){
+                    if(door.getDeath()!=0){
+                        p.stripItem(-1);
+                    }
+                    else{
+                        p.stripItem(door.getItemLoss());
+                    }
+                }
                 //add mor econditions
             }
+                
+            
         }
     }
 }
