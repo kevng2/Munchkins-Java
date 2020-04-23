@@ -44,6 +44,8 @@ public class Board extends JFrame {
     private Graphics2D g2d;
     private int currentPlayer = 1;
     private JLabel mPlayerTurn;
+    private JButton mAttack;
+    private JButton mRun;
     MouseHandler mouseHandler; 
 
     Board() {
@@ -113,10 +115,19 @@ public class Board extends JFrame {
             mDoorButton = placeImageButton(mDoorButton, "door_card.png", 20, 480, 170, 100);
             mDoorButton.addMouseListener(mouseHandler);
 
-            mPlayerTurn = new JLabel("Player 1's Turn");
-            mPlayerTurn.setBounds(500, 0, 300, 50);
+            mPlayerTurn = new JLabel("Player 1, Take Your Turn");
+            mPlayerTurn.setBounds(550, 0, 300, 50);
             mPlayerTurn.setFont(new Font("Serif", Font.BOLD, 24));
             add(mPlayerTurn);
+
+            mAttack = new JButton("Attack");
+            mAttack.setBounds(50, 630, 100, 20);
+            add(mAttack);
+
+            mRun = new JButton("Run");
+            mRun.setBounds(50, 670, 100, 20);
+            add(mRun);
+
         }
 
         @Override
@@ -205,7 +216,7 @@ public class Board extends JFrame {
                 placeButtons(Munchkin.player[Munchkin.playerTurn]);
             }
             else if(e.getSource() == mDoorButton) {
-                System.out.println("Door Button Pressed");
+                //Munchkin.kickDoor(Munchkin.player[Munchkin.playerTurn],Munchkin.newDeck, Munchkin.playerTurn, Munchkin.player);
             }
             else {
                 Vector<JButton> tempButton = Munchkin.player[Munchkin.playerTurn].getCardButtons(); 
