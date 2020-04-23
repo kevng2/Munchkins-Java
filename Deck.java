@@ -36,6 +36,7 @@ public class Deck {
                     tlist.add(new AccessoryCard(attrb[1],'A', Integer.parseInt(attrb[2]),attrb[3]));
                 }
             }
+            
             Collections.shuffle(dlist);
             Collections.shuffle(tlist);
             // System.out.println(dlist.get(0).getName());

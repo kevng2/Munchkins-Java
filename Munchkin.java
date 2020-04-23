@@ -38,7 +38,7 @@ public class Munchkin {
         Card door = d.popDoor();
         int help1=0,help2=0;
         boolean wincondition = false;
-        if(door.getType() == 'm'){
+        if(door.getType() == 'M'){
             //update
             if(p.getPowerLevel() < door.getLevel()){
                 //request help
