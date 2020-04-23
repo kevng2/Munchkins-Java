@@ -47,6 +47,7 @@ public class Munchkin {
         int help1=0,help2=0;
         boolean wincondition = false;
         if(door.getType() == 'm'){
+            //update
             if(p.getPowerLevel() < door.getLevel()){
                 //request help
                 //event handle if the player wants to help
@@ -143,6 +144,17 @@ public class Munchkin {
             }
                 
             
+        }
+        else{
+            if(door.getCurse() == -1){
+                p.setCurrentLevel(p.mCurrentLevel-1);
+            }
+            else if(door.getCurse()==-3){
+                p.stripItem(1);
+            }
+            else if(door.getCurse()==-99){
+                p.discardCard(-1);
+            }
         }
     }
 }

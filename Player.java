@@ -117,7 +117,11 @@ public abstract class Player {
     }
     public abstract void updatePosition();
 
+
     public void discardCard(int amt){
+        if (amt==-1){
+            hand.clear();
+        }
         for(int i=0;i<amt;i++){
             hand.remove(0);
         }
