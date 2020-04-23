@@ -2,31 +2,39 @@ import Cards.*;
 import java.util.Random;
 public class Munchkin {
     public static final Deck newDeck = new Deck();
+    /*
     public static Player player1 = new Player1(newDeck);
     public static Player player2 = new Player2(newDeck);    
     public static Player player3 = new Player3(newDeck);
+    */
+    public static Player[] player = new Player[3];
+    public static int playerTurn = 0;
 
     public static void main(String[] args) {
+        player[0] = new Player1(newDeck);
+        player[1] = new Player2(newDeck);
+        player[2] = new Player3(newDeck);
         Board game = new Board();
 
-        game.updateHand(player1);
+        game.placeButtons(player[0]);
 
         boolean wincondition = false;
         int winner = 0;
 
         while(wincondition){
-            if(player1.getCurrentLevel() == 10){
+            if(player[0].getCurrentLevel() == 10){
                 winner = 1;
                 break;
             }
             //add player 1 logic here
             //event handle if player wants to add item and use player.addItem function
-            if(player2.getCurrentLevel() == 10){
+
+            if(player[1].getCurrentLevel() == 10){
                 winner = 1;
                 break;
             }
             //add player 2 logic here
-            if(player3.getCurrentLevel() == 10){
+            if(player[2].getCurrentLevel() == 10){
                 winner = 1;
                 break;
             }
@@ -101,9 +109,6 @@ public class Munchkin {
             else{
                 wincondition=true;
             }
-
-
-
 
             if(wincondition){
                 p.setCurrentLevel(door.getLevelGain());
