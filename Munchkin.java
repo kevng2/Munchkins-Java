@@ -1,5 +1,6 @@
 import Cards.*;
 import java.util.Random;
+
 public class Munchkin {
     public static final Deck newDeck = new Deck();
     /*
@@ -21,8 +22,9 @@ public class Munchkin {
         boolean wincondition = true;
         int winner = 0;
         int currplayer=0;
+
         while(wincondition){
-            if(player[currplayer].getCurrentLevel() == 10){
+            if(player[currplayer].getCurrentLevel() == 10) {
                 winner = 1;
                 break;
             }
@@ -70,8 +72,6 @@ public class Munchkin {
                         wincondition = true;
                     }
                 }
-                
-                
             }
             else{
                 wincondition=true;
