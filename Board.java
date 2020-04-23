@@ -213,8 +213,8 @@ public class Board extends JFrame {
                 for(int i = 0; i < tempButton.size(); i++) {
                     if(e.getSource() == tempButton.get(i)) {
                         if(cardList.get(i).getType() == 'A') {
-                            Munchkin.player[Munchkin.playerTurn].setCurrentPowerLevel(cardList.get(i).getBonus());
-                            System.out.println(Munchkin.player[Munchkin.playerTurn].getCurrentPowerLevel());
+                            // Add item to hashmap
+                            Munchkin.player[Munchkin.playerTurn].addItem(cardList.get(i).getName(), cardList.get(i).getBonus());
 
                             // Remove card from the player list
                             cardList.remove(i);
@@ -224,6 +224,8 @@ public class Board extends JFrame {
 
                             // Update the button UI
                             placeButtons(Munchkin.player[Munchkin.playerTurn]);
+
+                            System.out.println(Munchkin.player[Munchkin.playerTurn].getPowerLevel());
                         }
                     }
                 }
