@@ -38,16 +38,13 @@ public class Board extends JFrame {
     private JPanel mRightPanel;
     private JLabel mTitle;
     private JButton[] mLeftPanelButton;
-    private Vector<JButton> mPlayer1Cards = new Vector<JButton>();
-    private Vector<JButton> mPlayer2Cards = new Vector<JButton>();
-    private Vector<JButton> mPlayer3Cards = new Vector<JButton>();
     private ButtonHandler mButtonHandler;
     private JLabel mTreasureButton;
     private JLabel mDoorButton;
     private Graphics2D g2d;
     private int currentPlayer = 1;
     private JLabel mPlayerTurn;
-    
+    MouseHandler mouseHandler; 
 
     Board() {
         super("Munchkin");
@@ -109,7 +106,7 @@ public class Board extends JFrame {
 
             // Treasure Card
             mTreasureButton = placeImageButton(mTreasureButton, "treasure_card.png", 350, 300, 170, 100);
-            MouseHandler mouseHandler = new MouseHandler();
+            mouseHandler = new MouseHandler();
             mTreasureButton.addMouseListener(mouseHandler);
             
             // Door Card
@@ -168,9 +165,9 @@ public class Board extends JFrame {
             placeImage(g2d, "door_word.png", 40, 580, 120, 30);
 
             
-            setPlayerPosition(Munchkin.player1);
-            setPlayerPosition(Munchkin.player2);
-            setPlayerPosition(Munchkin.player3); 
+            setPlayerPosition(Munchkin.player[0]);
+            setPlayerPosition(Munchkin.player[1]);
+            setPlayerPosition(Munchkin.player[2]); 
         }
 
         public JLabel placeImageButton(JLabel imageButton, String imageName, int x, int y, int width, int height) {
@@ -204,18 +201,8 @@ public class Board extends JFrame {
         @Override
         public void mouseClicked(MouseEvent e) {
             if(e.getSource() == mTreasureButton) {
-                if(currentPlayer == 1) {
-                    Munchkin.player1.drawTreasure(Munchkin.newDeck);
-                    updateHand(Munchkin.player1);
-                }
-                else if(currentPlayer == 2) {
-                    Munchkin.player2.drawTreasure(Munchkin.newDeck);
-                    updateHand(Munchkin.player2);
-                }
-                else {
-                    Munchkin.player3.drawTreasure(Munchkin.newDeck);
-                    updateHand(Munchkin.player3);
-                }
+                Munchkin.player[Munchkin.playerTurn].drawTreasure(Munchkin.newDeck);
+                placeButtons(Munchkin.player[Munchkin.playerTurn]);
             }
             else if(e.getSource() == mDoorButton) {
                 System.out.println("Door Button Pressed");
@@ -274,69 +261,17 @@ public class Board extends JFrame {
         g2d.drawImage(image, x, y, null);
     }
 
-    public void updateHand(Player player) {
-        Vector<Card> playerHand = player.getHand();
-        mRightPanel.removeAll();        
-        for (Card card : playerHand) {
-            String text = card.getName(); 
-            if(card.getType() == 'T') {
-                text = "<html>Treasure Card<br/>" + "+" + card.getBonus() + " Bonus<br/>" + card.getName() +
-                 "</html>";
-            }
-            else if(card.getType() == 'L') {
-                text = "<html> Level Card <br/>" + card.getName() + "<br/>" + "<br/></html>";
-            }
-            else if(card.getType() == 'M') {
-                text = "<html> Monster Card <br/> Level " + card.getLevel() + "<br/>" + card.getName() + "<br/>" 
-                + "Level Loss: " + card.getLevelLoss() + "<br/>" + "Treasure: " + card.getTreasure()
-                 + "<br/>" + "Item Loss: " + card.getItemLoss() + "<br/>"+ "Level Gain: " + card.getLevelGain()
-                 + "<br/>" + "Discard: " + card.getDiscard() + "<br/>" + "Death: " + card.getDeath();
-            }
-            else if(card.getType() == 'C') {
-                int curse = card.getCurse();
-                String curseType;
-                if(curse == -1) {
-                    curseType = "Lose Level";
-                }
-                else if(curse == -2) {
-                    curseType = "Add Monster";
-                }
-                else if(curse == -3) {
-                    curseType = "Lose armor";
-                }
-                else {
-                    curseType = "Lose all cards";
-                }
-
-                text = "<html>" + "CURSE!" + "<br/>" + card.getName() + "<br/>" +
-                curseType + "</html>";
-            }
-            else if(card.getType() == 'A') {
-                text = "<html> Accessory Card <br/>" + card.getName() + "<br/>" + "Bonus: " + card.getBonus() +
-                "<br/>" + "Bodypart: " + card.getPart();
-            }
-
-            if(currentPlayer == 1) {
-                mPlayer1Cards.add(new JButton(text));
-                addButtons(mPlayer1Cards);
-            }
-            else if(currentPlayer == 2) {
-                mPlayer2Cards.add(new JButton(text));
-                addButtons(mPlayer2Cards);
-            }
-            else {
-                mPlayer3Cards.add(new JButton(text));
-                addButtons(mPlayer3Cards);
-            }
-        }
-
-        // Update the layout after adding the button
-        revalidate();
+    public void placeButtons(Player player) {
+        player.updateHand();
+        Vector<JButton> buttons = player.getCardButtons(); 
+        addButtons(buttons);
     }
 
     public void addButtons(Vector<JButton> button) {
+        mRightPanel.removeAll();
         for(JButton x : button) {
             mRightPanel.add(x);
         }
+        revalidate();
     }
 }

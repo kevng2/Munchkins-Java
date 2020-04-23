@@ -2,6 +2,8 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
+
 import Cards.*;
 import java.util.*; 
 import javafx.util.Pair;
@@ -14,13 +16,58 @@ public abstract class Player {
 	protected String mImageName;
 	protected HashMap<String,Integer> items = new HashMap<String,Integer>();  
     protected Vector<Card> hand = new Vector<Card>();
+    protected Vector<JButton> cardButtons = new Vector<JButton>();
     
     Player(Deck d) {
         mCurrentLevel = 1;
-        for(int i=0;i<2;i++) {
+        for(int i = 0; i < 2; i++) {
 			hand.add(d.popDoor());
 			hand.add(d.popTreas());
 		}
+    }
+
+    public void updateHand() {
+        cardButtons.clear();
+        for (Card card : hand) {
+            String text = card.getName(); 
+            if(card.getType() == 'T') {
+                text = "<html>Treasure Card<br/>" + "+" + card.getBonus() + " Bonus<br/>" + card.getName() +
+                 "</html>";
+            }
+            else if(card.getType() == 'L') {
+                text = "<html> Level Card <br/>" + card.getName() + "<br/>" + "<br/></html>";
+            }
+            else if(card.getType() == 'M') {
+                text = "<html> Monster Card <br/> Level " + card.getLevel() + "<br/>" + card.getName() + "<br/>" 
+                + "Level Loss: " + card.getLevelLoss() + "<br/>" + "Treasure: " + card.getTreasure()
+                 + "<br/>" + "Item Loss: " + card.getItemLoss() + "<br/>"+ "Level Gain: " + card.getLevelGain()
+                 + "<br/>" + "Discard: " + card.getDiscard() + "<br/>" + "Death: " + card.getDeath();
+            }
+            else if(card.getType() == 'C') {
+                int curse = card.getCurse();
+                String curseType;
+                if(curse == -1) {
+                    curseType = "Lose Level";
+                }
+                else if(curse == -2) {
+                    curseType = "Add Monster";
+                }
+                else if(curse == -3) {
+                    curseType = "Lose armor";
+                }
+                else {
+                    curseType = "Lose all cards";
+                }
+
+                text = "<html>" + "CURSE!" + "<br/>" + card.getName() + "<br/>" +
+                curseType + "</html>";
+            }
+            else if(card.getType() == 'A') {
+                text = "<html> Accessory Card <br/>" + card.getName() + "<br/>" + "Bonus: " + card.getBonus() +
+                "<br/>" + "Bodypart: " + card.getPart();
+            }
+            cardButtons.add(new JButton(text));
+        }
     }
 
     public BufferedImage loadImage(String fileName) {
@@ -33,9 +80,11 @@ public abstract class Player {
         }
         return buff;
     }
+
     public void addCardHand(Card c){
         hand.add(c);
     }
+
     public abstract void updatePosition();
 
     public void discardCard(int amt){
@@ -90,6 +139,10 @@ public abstract class Player {
 
     public void drawDoor(Deck d) {
         hand.add(d.popDoor());
+    }
+    
+    public Vector<JButton> getCardButtons() {
+        return cardButtons;
     }
 }
 
