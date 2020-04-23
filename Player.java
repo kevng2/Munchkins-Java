@@ -10,6 +10,7 @@ import javafx.util.Pair;
 
 public abstract class Player {
     protected int mCurrentLevel; 
+    protected int mCurrentPowerLevel;
     protected int xPosition;
     protected int yPosition;
     protected Image mPiece;
@@ -20,10 +21,19 @@ public abstract class Player {
     
     Player(Deck d) {
         mCurrentLevel = 1;
+        mCurrentPowerLevel = 1;
         for(int i = 0; i < 2; i++) {
 			hand.add(d.popDoor());
 			hand.add(d.popTreas());
 		}
+    }
+
+    public int getCurrentPowerLevel() {
+        return mCurrentPowerLevel;
+    }
+
+    public void setCurrentPowerLevel(int level) {
+        mCurrentPowerLevel += level;
     }
 
     public void updateHand() {

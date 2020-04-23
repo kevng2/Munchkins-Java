@@ -209,10 +209,13 @@ public class Board extends JFrame {
             }
             else {
                 Vector<JButton> tempButton = Munchkin.player[Munchkin.playerTurn].getCardButtons(); 
-                Vector<Card> tempCard = Munchkin.player[Munchkin.playerTurn].getHand();
-                for(int i = 0; i < tempCard.size(); i++) {
+                Vector<Card> cardList = Munchkin.player[Munchkin.playerTurn].getHand();
+                for(int i = 0; i < tempButton.size(); i++) {
                     if(e.getSource() == tempButton.get(i)) {
-                        System.out.println(tempCard.get(i).getName());
+                        if(cardList.get(i).getType() == 'A') {
+                            Munchkin.player[Munchkin.playerTurn].setCurrentPowerLevel(cardList.get(i).getBonus());
+                            System.out.println(Munchkin.player[Munchkin.playerTurn].getCurrentPowerLevel());
+                        }
                     }
                 }
             }
