@@ -42,11 +42,10 @@ public abstract class Player {
         }
         else{
             int i = 0;
-            for(Map.Entry mapElement: items.entrySet()){
+            for(String key: items.keySet()){
                 if(i++==amt-1){
                     break;
                 }
-                String key = (String)mapElement.getKey();
                 items.remove(key);
                 
             }
